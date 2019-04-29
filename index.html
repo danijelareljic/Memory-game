@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div id="openWindow">
+    <div id="openWindow"> <!--Prvi prozor-->
         <div>
                 <h1>MEMORY GAME</h1>
                 <p>Koliko brzo možeš da otvoriš sve karte?</p>
@@ -28,11 +28,20 @@
         <div>
             <input type="button" value="Pravila" id="help">
         </div>
-    </div>
+    </div> <!--#openWindow-->
     <div id="helpModal" class="modal">
         <span class="close">&times;</span>
         <p>Cilj je da se u što manje poteza i za što kraće vreme pronađu svi parovi.</p>
     </div>
+    <div id="container"> <!--Drugi prozor koji se otvara kad se klikne na dugme start-->
+        <div id="about"> 
+             <div>  Broj poteza: <span id="brPoteza"></span></div> 
+                <span id="timer">00</span>
+        </div>
+        
+        <div id="board"></div> <!--Prazan div u koji se smeštaju kartice-->
+    </div> <!--#container-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="main.js"></script>
 </body>
 
