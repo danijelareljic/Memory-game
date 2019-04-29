@@ -35,12 +35,16 @@
     </div>
     <div id="container"> <!--Drugi prozor koji se otvara kad se klikne na dugme start-->
         <div id="about"> 
-             <div>  Broj poteza: <span id="brPoteza"></span></div> 
-                <span id="timer">00</span>
+             <div>  Broj poteza: <span id="brPoteza">0</span></div> 
+                <span id="timer">0 min 00 sec</span>
         </div>
         
         <div id="board"></div> <!--Prazan div u koji se smeštaju kartice-->
     </div> <!--#container-->
+    <div id="finishModal" class="modal">
+        <span class="close">&times;</span>
+        <p id="poruka"></p>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="main.js"></script>
 </body>

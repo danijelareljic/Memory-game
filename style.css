@@ -70,6 +70,7 @@ input:hover, select:hover {
     display: none;
     justify-content: space-between;
     padding: 5%;
+    font-size: 1.2em;
 }
 
 #board {
@@ -153,7 +154,9 @@ img.front {
         width: 70%;
         margin: 2% auto;
     }
-  
+    #about {
+        font-size: 2em;
+    }
     .modal {
         left: 30%;
         top: 8%;
