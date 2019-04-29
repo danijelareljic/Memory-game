@@ -1,12 +1,33 @@
+@font-face {
+    font-family: 'holy-rav';
+    src: url('fonts/HOLY-RAV-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body, input, select {
-    background-color: #055902;
-    color: #F29580;
+
+body {
+    background-image: url('static/vintage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #bf4158;
 }
+
+h1 {
+    font-family: 'holy-rav';
+    font-size: 2.5em;
+}
+
+body, input, select {
+    background-color: #f2cdac;
+}
+
 #openWindow {
     width: 100vw;
     height: 100vh;
@@ -14,63 +35,70 @@ body, input, select {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    background-color: #078C03;
-        border: 2px solid #400505;
-        border-radius: 5px;
-    
+    border: 50px solid transparent;
+    border-image: url(static/frame.png) 30% round;
 }
-#openWindow > * {
+
+#openWindow>* {
     margin: 5%;
 }
 
 input, select {
     width: 30%;
+    min-width: 100px;
     border: 2px solid #F2A766;
     border-radius: 20px;
     font-size: 20px;
-    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.31);
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.5);
     padding: 1%;
 }
+
+input:hover, select:hover {
+    background-color: #bf4158;
+    cursor: pointer;
+}
+
 .modal {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    position: fixed;
+    z-index: 1;
+    padding-top: 120px;
     left: 0%;
     top: 0%;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    
+    width: 100%;
+    height: 100%;
+    background-color: #f2cf63;
+    border: 50px solid transparent;
+    border-image: url(static/frame.png) 30% round;
 }
+
 .close {
     position: absolute;
-    top: 15px;
-    right: 35px;
+    top: 2%;
+    right: 5%;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
 }
-.close:hover,
-.close:focus {
+
+.close:hover, .close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
 }
 
 @media(min-width:800px) {
-    
     #openWindow {
         width: 40vw;
         height: 70vh;
         margin: 5% auto;
-        
     }
     .modal {
         left: 30%;
-        top: 10%;
-        width: 40%; 
-        height: 80%; 
+        top: 8%;
+        width: 40%;
+        height: 80%;
+        border-radius: 20px;
     }
 }
