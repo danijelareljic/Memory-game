@@ -139,7 +139,7 @@ let poruka = document.getElementById('poruka');
 function finishGame() {
     modal2.style.display = 'block'; // prikazivanje modalnog prozora
     clearInterval(interval); // zaustavljanje vremena
-    poruka.innerHTML = `Pronašli ste sve parove za ${min} min ${sec} sec u ${moves} poteza`;
+    poruka.innerHTML = `Čestitamo! Pronašli ste sve parove za ${min} min ${sec} sec. Trebalo vam je ${moves} poteza.`;
     pom = 0; 
     moves =  0; 
     openCards = 0; // resetovanje brojača
