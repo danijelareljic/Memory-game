@@ -1,20 +1,42 @@
 let modal1 = document.getElementById('helpModal');
 let help = document.getElementById('help');
-//otvaranje prozora klikom na dugme pravila
-help.onclick = function () {
-    modal1.style.display = "block";
-}
-//zatvaranje otvorenog prozora
-var span = document.getElementsByClassName("close");
-span[0].onclick = function () {
-    modal1.style.display = "none";
-}
+let span = document.getElementsByClassName("close");
+let board = document.getElementById('board');
+let niz;
+let front = document.getElementsByClassName('front');
+let back = document.getElementsByClassName('back');
+let count = 0, pom = 0, openCards = 0;//promenljive koje broje otvorene karte
+let wait = false; //čekanje da se karte zatvore
+let firstCard, secondCard; //prva i druga karta
+let modal2 = document.getElementById('finishModal');
+let poruka = document.getElementById('poruka');
+let sec = 0, min = 0;
+let time = document.getElementById('timer');
+let interval;
+let moves = 0;
+let brPoteza = document.getElementById('brPoteza');
+let reload = document.getElementById("reload");
+let backArrow = document.getElementById("back");
+let pause = document.getElementById('pause');
+let firstWindow = document.getElementById('openWindow');
+let start = document.getElementById('start');
+let isPaused = false;
+let click = 0;
 //kreiranje niza sličica
 let slicice = [];
 for (let i = 1; i <= 60; i++) {
     slicice.push(i + '.png');
 }
 console.log(slicice);
+//otvaranje prozora klikom na dugme pravila
+help.onclick = function () {
+    modal1.style.display = "block";
+}
+//zatvaranje otvorenog prozora
+span[0].onclick = function () {
+    modal1.style.display = "none";
+}
+
 //Određivanje težine
 class Mode {
     constructor(cards) {
@@ -36,8 +58,7 @@ class Mode {
         return document.getElementById('type').value;
     }
 }
-let board = document.getElementById('board');
-let niz;
+
 //postavljanje kartica
 function openBoard() {
     let type = document.getElementById('type').value; //dohvatanje selektovane vrednosti
@@ -66,8 +87,7 @@ function openBoard() {
         board.appendChild(div);
     }
 }
-let front = document.getElementsByClassName('front');
-let back = document.getElementsByClassName('back');
+
 //moderna verzija Fisher-Yates algoritma
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -75,13 +95,11 @@ function shuffle(array) {
         [array[i], array[j]] = [array[j], array[i]]; // zamena elemenata
     }
 }
-let count = 0, pom = 0, openCards=0;//promenljive koje broje otvorene karte
-let wait = false; //čekanje da se karte zatvore
-let firstCard, secondCard; //prva i druga karta
+
 
 // otvaranje kartice
 function openCard() {
-    if(wait) {
+    if (wait) {
         return; // karte nisu zatvorene 
     }
     count++; // povećava se broj otvorenih karti
@@ -94,7 +112,7 @@ function openCard() {
         secondCard = this; // postavlja se druga karta
         checkForMatch(); // provera parova
     }
-    if(pom == 1) { // pokreće se tajmer na prvi klik
+    if (pom == 1) { // pokreće se tajmer na prvi klik
         vreme();
     }
 }
@@ -104,13 +122,11 @@ function checkForMatch() {
     moveNumber();
     // ukoliko su sličice iste
     if (firstCard.parentElement.dataset.ime === secondCard.parentElement.dataset.ime) {
-        openCards +=2; // povećava se za dva
-        
+        openCards += 2; // povećava se za dva
+
         count = 0; // kada dođe do 2 vraća se na nulu
         if (openCards === niz.length) { // ukoliko su sve karte otvorene
             finishGame(); // kraj
-
-
         }
     } else { // ukoliko sličice nisu iste
         wait = true; // čeka se da se karte zatvore
@@ -118,14 +134,15 @@ function checkForMatch() {
             $(firstCard).slideDown();
             $(secondCard).slideDown();
             wait = false;
-            count = 0 }, 1000); // Nakon 1 sekunde karte se zatvaraju, čekanje završava i prvi broj otvorenih karata se vraća na nulu
+            count = 0
+        }, 1000); // Nakon 1 sekunde karte se zatvaraju, čekanje završava i prvi broj otvorenih karata se vraća na nulu
 
     }
 }
 // pokretanje igrice
 function startGame() {
     about.style.display = 'flex'; // div #about postaje vidljiv
-    time.innerHTML = '0 min 0 sec';
+    time.innerHTML = '0:00';
     brPoteza.innerHTML = 0;
     openBoard(); // pokretanje f-je za postavljanje kartica
     for (let i = 0; i < niz.length; i++) {
@@ -133,15 +150,14 @@ function startGame() {
     } // omogućavanje otvaranja karata klikom
 
 }
-let modal2 = document.getElementById('finishModal');
-let poruka = document.getElementById('poruka');
+
 // logika za kraj igre
 function finishGame() {
     modal2.style.display = 'block'; // prikazivanje modalnog prozora
     clearInterval(interval); // zaustavljanje vremena
     poruka.innerHTML = `Čestitamo! Pronašli ste sve parove za ${min} min ${sec} sec. Trebalo vam je ${moves} poteza.`;
-    pom = 0; 
-    moves =  0; 
+    pom = 0;
+    moves = 0;
     openCards = 0; // resetovanje brojača
 }
 // zatvaranje drugog modalnog prozora
@@ -151,35 +167,32 @@ span[1].onclick = function () {
     firstWindow.style.display = 'flex'; // prikazivanje prvog prozora
     board.innerHTML = ''; // sklanjanje sličica i kartica
 }
-let sec = 0, min = 0;
-let time = document.getElementById('timer');
+// ponašanje sekundi i minuta
 function period() {
-    sec++;
-    if (sec == 60) {
-        min++;
-        sec = 0;
+    if (!isPaused) {
+        sec++;
+        if (sec == 60) {
+            min++;
+            sec = 0;
+        }
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
+        time.innerHTML = `${min}:${sec}`;
     }
-    if(sec<10) {
-        sec = '0'+sec;
-    }
-    time.innerHTML = min + ' min ' + sec + ' sec';
 }
-    let interval;
-    function vreme() {
-        sec = 0;
-        min = 0;
-        interval = setInterval("period()", 1000);
-       
-    }
-    let moves = 0;
-    let brPoteza = document.getElementById('brPoteza');
-    function moveNumber() {
-        moves++;
-        brPoteza.innerHTML = moves;
-    
-    }
-let firstWindow = document.getElementById('openWindow');
-let start = document.getElementById('start');
+// tajmer
+function vreme() {
+    sec = 0;
+    min = 0;
+    interval = setInterval("period()", 1000);
+}
+// brojač poteza
+function moveNumber() {
+    moves++;
+    brPoteza.innerHTML = moves;
+}
+
 
 // klikom na dugme start prikazuje se drugi prozor i poziva f-ja za pokretanje igrice
 start.addEventListener('click', function () {
@@ -188,3 +201,36 @@ start.addEventListener('click', function () {
     startGame();
 
 });
+// pokretanje igre izpočetka
+reload.onclick = function () {
+    reset();
+    startGame();
+}
+// vraćanje na početni ekran
+backArrow.onclick = function () {
+    document.getElementById('container').style.display = 'none';
+    firstWindow.style.display = 'flex';
+    reset();
+
+}
+// pauziranje igre
+pause.onclick = function () {
+    click++;
+    if (click % 2 != 0) {
+        board.style.display = 'none';
+        isPaused = true;
+    } else {
+        board.style.display = 'flex';
+        isPaused = false;
+    }
+
+}
+// pomoćna f-ja za zaustavljanje tajmera i vraćanje svih brojača na nulu
+function reset() {
+    board.innerHTML = '';
+    clearInterval(interval);
+    sec = 0;
+    min = 0;
+    pom = 0;
+    moves = 0;
+}

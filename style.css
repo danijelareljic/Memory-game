@@ -25,7 +25,7 @@ h1 {
     color: #bf4158;
 }
 
-body, input, select {
+body, input {
     background-color: #f2cdac;
 }
 
@@ -44,14 +44,59 @@ body, input, select {
     margin: 5%;
 }
 
-input, select {
+input {
     width: 30%;
-    min-width: 100px;
+    min-width: 120px;
     border: 2px solid #F2A766;
     border-radius: 20px;
     font-size: 20px;
     box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.5);
-    padding: 1%;
+    padding: 5px 8px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.select-style {
+    position: relative;
+    width: 30%;
+    min-width: 120px;
+    border-radius: 20px;
+    font-size: 20px;
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.5);
+    background-color: #f2cdac;
+    margin: auto;
+}
+
+.select-style select {
+    width: 100%;
+    font-size: 20px;
+    padding: 5px 8px;
+    text-align-last: center;
+    font-family: 'Roboto', sans-serif;
+    border: 2px solid #F2A766;
+    border-radius: 20px;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+   
+}
+.select-style:after {
+    position: absolute;
+    content: "";
+    top: 16px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #000 transparent transparent transparent;
+  }
+.select-style:hover {
+    background-color: #bf4158;
+    cursor: pointer;
+}
+
+.select-style select:focus {
+    outline: none;
 }
 
 input:hover, select:hover {
@@ -72,12 +117,13 @@ input:hover, select:hover {
     padding: 5%;
     font-size: 1.2em;
 }
-
+#reload, #back, #pause {
+    cursor: pointer;
+}
 #board {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    
+    justify-content: space-around;
 }
 
 img.back {
@@ -85,8 +131,6 @@ img.back {
     height: 100%;
     position: absolute;
     top: 0;
-    
-    
 }
 
 img.front {
@@ -94,33 +138,36 @@ img.front {
     width: 100%;
     height: 100%;
     top: 0;
-     display: none; 
+    display: none;
 }
 
 #board>div {
     position: relative;
     margin-top: 2%;
-} 
+}
 
 .easy {
     width: 100px;
-    height: 100px;  
+    height: 100px;
 }
+
 .medium {
     width: 75px;
-    height: 75px; 
+    height: 75px;
 }
+
 .hard {
     width: 50px;
-    height: 50px; 
+    height: 50px;
 }
+
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 120px;
-    left: 0%;
-    top: 0%;
+    padding-top: 80px;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     background-color: #f2cf63;
@@ -160,13 +207,15 @@ img.front {
     #about {
         font-size: 2em;
     }
+    #board>div {
+       margin-right: 2%;
+    }
     .modal {
         left: 30%;
         top: 8%;
         width: 40%;
         height: 80%;
         border-radius: 20px;
-        
     }
     .medium {
         width: 100px;

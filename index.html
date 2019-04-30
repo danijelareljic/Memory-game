@@ -20,24 +20,31 @@
             <input type="button" value="Start" id="start">
         </div>
         <div>
+        <div class="select-style">
             <select name="type" id="type">
                 <option value="easy">Lagano</option>
                 <option value="medium" selected>Srednje</option>
                 <option value="hard">Teško</option>
             </select>
         </div>
+    </div>
         <div>
             <input type="button" value="Pravila" id="help">
         </div>
     </div> <!--#openWindow-->
     <div id="helpModal" class="modal">
         <span class="close">&times;</span>
-        <p>Kliknite na kartu da je otvorite. Probajte da pronađete parove sličica koje se podudaraju za što kraće vreme i u što manje poteza. </p>
+        <p>Kliknite na kartu da je otvorite. Potrebno je da pronađete sve parove sličica za što kraće vreme i u što manje poteza. Broj parova zavisi od težine koju izaberete.</p>
     </div>
     <div id="container"> <!--Drugi prozor koji se otvara kad se klikne na dugme start-->
         <div id="about"> 
-             <div>  Broj poteza: <span id="brPoteza">0</span></div> 
-                <span id="timer">0 min 00 sec</span>
+             <div>  Broj poteza: <span id="brPoteza"></span></div>
+             <div>
+                 <img src="static/reload.png" alt="reload" id="reload">
+                 <img src="static/back.png" alt="back" id="back">
+                 <img src="static/pause.png" alt="pause" id="pause">
+             </div> 
+                <span id="timer"></span>
         </div>
         
         <div id="board"></div> <!--Prazan div u koji se smeštaju kartice-->
