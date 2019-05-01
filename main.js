@@ -7,12 +7,12 @@ const help = document.getElementById("help");
 const container = document.getElementById("container");
 const board = document.getElementById("board");
 const time = document.getElementById("timer");
-const brPoteza = document.getElementById("brPoteza");
+const numTry = document.getElementById("numTry");
 //Modalni prozori
 const modal1 = document.getElementById("helpModal");
 const modal2 = document.getElementById("finishModal");
 const span = document.getElementsByClassName("close");
-const poruka = document.getElementById("poruka");
+const message = document.getElementById("message");
 //Ikonice
 const reload = document.getElementById("reload");
 const backArrow = document.getElementById("back");
@@ -33,11 +33,11 @@ let firstCard, secondCard; //prva i druga karta
 let niz;
 let interval;
 //kreiranje niza sličica
-let slicice = [];
+let pics = [];
 for (let i = 1; i <= 60; i++) {
-    slicice.push(i + ".png");
+    pics.push(i + ".png");
 }
-console.log(slicice);
+console.log(pics);
 //Određivanje težine
 class Mode {
     constructor(cards) {
@@ -47,9 +47,9 @@ class Mode {
     createArray() {
         let array = [];
         while (array.length < this.cards) {
-            let k = Math.floor(Math.random() * slicice.length);//nasumičan indeks
-            if (!(array.includes(slicice[k]))) {
-                array.push(slicice[k]); //ubacuje sličicu sa indeksom k u novi niz ukoliko se već ne nalazi u nizu
+            let k = Math.floor(Math.random() * pics.length);//nasumičan indeks
+            if (!(array.includes(pics[k]))) {
+                array.push(pics[k]); //ubacuje sličicu sa indeksom k u novi niz ukoliko se već ne nalazi u nizu
             }
         }
         array = array.concat(array); //dupliranje sličica
@@ -141,7 +141,7 @@ function checkForMatch() {
 function startGame() {
     about.style.display = "flex"; // div #about postaje vidljiv
     time.innerHTML = "0:00";
-    brPoteza.innerHTML = 0;
+    numTry.innerHTML = 0;
     openBoard(); // pokretanje f-je za postavljanje kartica
     for (let i = 0; i < niz.length; i++) {
         back[i].addEventListener("click", openCard);
@@ -152,7 +152,7 @@ function startGame() {
 function finishGame() {
     modal2.style.display = "block"; // prikazivanje modalnog prozora
     clearInterval(interval); // zaustavljanje vremena
-    poruka.innerHTML = `Čestitamo! Pronašli ste sve parove za ${min} min ${sec} sec. Trebalo vam je ${moves} pokušaja.`;
+    message.innerHTML = `Čestitamo! Pronašli ste sve parove za ${min} min ${sec} sec. Trebalo vam je ${moves} pokušaja.`;
     pom = 0;
     moves = 0;
     openCards = 0; // resetovanje brojača
@@ -180,7 +180,7 @@ function vreme() {
 // brojač poteza
 function moveNumber() {
     moves++;
-    brPoteza.innerHTML = moves;
+    numTry.innerHTML = moves;
 }
 // pomoćna f-ja za zaustavljanje tajmera i vraćanje svih brojača na nulu
 function reset() {
