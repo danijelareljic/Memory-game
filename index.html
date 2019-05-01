@@ -15,7 +15,7 @@
         <div>
                 <h1>MEMORY GAME</h1>
                 <p>Koliko brzo možeš da otvoriš sve karte?</p>
-        </div>    
+        </div>
         <div>
             <input type="button" value="Start" id="start">
         </div>
@@ -32,23 +32,24 @@
             <input type="button" value="Pravila" id="help">
         </div>
     </div> <!--#openWindow-->
-    <div id="helpModal" class="modal">
-        <span class="close">&times;</span>
-        <p>Pravite poteze birajući dve karte za koje mislite da kriju istu sličicu. Ukoliko su sličice iste karte će ostati otvorene. Ako nisu, zatvoriće se i možete da probate ponovo.</p>
-    </div>
     <div id="container"> <!--Drugi prozor koji se otvara kad se klikne na dugme start-->
-        <div id="about"> 
-             <div>  Broj poteza: <span id="brPoteza"></span></div>
-             <div>
-                 <img src="static/reload.png" alt="reload" id="reload">
-                 <img src="static/back.png" alt="back" id="back">
-                 <img src="static/pause.png" alt="pause" id="pause">
-             </div> 
+        <div id="about">
+            <div>
+                Broj poteza: <span id="brPoteza"></span>
+            </div>
+            <div>
+                <img src="static/reload.png" alt="reload" id="reload">
+                <img src="static/back.png" alt="back" id="back">
+                <img src="static/pause.png" alt="pause" id="pause">
+            </div>
                 <span id="timer"></span>
-        </div>
-        
+        </div>     
         <div id="board"></div> <!--Prazan div u koji se smeštaju kartice-->
     </div> <!--#container-->
+    <div id="helpModal" class="modal">
+            <span class="close">&times;</span>
+            <p>Pravite poteze birajući dve karte za koje mislite da kriju istu sličicu. Ukoliko su sličice iste karte će ostati otvorene. Ako nisu, zatvoriće se i možete da probate ponovo.</p>
+        </div>
     <div id="finishModal" class="modal">
         <span class="close">&times;</span>
         <p id="poruka"></p>
@@ -56,5 +57,4 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="main.js"></script>
 </body>
-
 </html>
