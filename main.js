@@ -1,22 +1,22 @@
 //PROMENLJIVE
 //Prvi div
-let firstWindow = document.getElementById("openWindow");
-let start = document.getElementById("start");
-let help = document.getElementById("help");
+const firstWindow = document.getElementById("openWindow");
+const start = document.getElementById("start");
+const help = document.getElementById("help");
 //Drugi div
-let container = document.getElementById("container");
-let board = document.getElementById("board");
-let time = document.getElementById("timer");
-let brPoteza = document.getElementById("brPoteza");
+const container = document.getElementById("container");
+const board = document.getElementById("board");
+const time = document.getElementById("timer");
+const brPoteza = document.getElementById("brPoteza");
 //Modalni prozori
-let modal1 = document.getElementById("helpModal");
-let modal2 = document.getElementById("finishModal");
-let span = document.getElementsByClassName("close");
-let poruka = document.getElementById("poruka");
+const modal1 = document.getElementById("helpModal");
+const modal2 = document.getElementById("finishModal");
+const span = document.getElementsByClassName("close");
+const poruka = document.getElementById("poruka");
 //Ikonice
-let reload = document.getElementById("reload");
-let backArrow = document.getElementById("back");
-let pause = document.getElementById("pause");
+const reload = document.getElementById("reload");
+const backArrow = document.getElementById("back");
+const pause = document.getElementById("pause");
 //Brojači
 let count = 0, pom = 0, openCards = 0;//promenljive koje broje otvorene karte
 let sec = 0, min = 0; //vreme
@@ -152,7 +152,7 @@ function startGame() {
 function finishGame() {
     modal2.style.display = "block"; // prikazivanje modalnog prozora
     clearInterval(interval); // zaustavljanje vremena
-    poruka.innerHTML = `Čestitamo! Pronašli ste sve parove za ${min} min ${sec} sec. Trebalo vam je ${moves} poteza.`;
+    poruka.innerHTML = `Čestitamo! Pronašli ste sve parove za ${min} min ${sec} sec. Trebalo vam je ${moves} pokušaja.`;
     pom = 0;
     moves = 0;
     openCards = 0; // resetovanje brojača
